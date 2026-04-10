@@ -1,4 +1,4 @@
- ```yaml
+
 name: Build macOS App on: workflow_dispatch: jobs: build-mios: runs-on: macos-latest steps: - name: Checkout code uses: actions/checkout@v4 - name: Set up Python uses: actions/setup-python@v5 with: python-version: ‘3.11’ - name: Install dependencies run: | python -m pip install --upgrade pip pip install requests pillow pyinstaller - name: Build macOS app run: | pyinstaller --onefile --windowed --name UnsplashSearch app.py mkdir -p dist/UnsplashSearch.app/Contents/MacOS mv dist/UnsplashSearch dist/UnsplashSearch.app/Contents/MacOS/ cat > dist/UnsplashSearch.app/Contents/Info.plist << ‘EOF’
 <?xml version=“1.0” encoding=“UTF-8”?>
 <!DOCTYPE plist PUBLIC “-//Apple//DTD PLIST 1.0//EN” “http://www.apple.com/DTDs/PropertyList-1.0.dtd”>
